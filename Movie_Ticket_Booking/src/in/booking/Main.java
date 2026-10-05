@@ -38,8 +38,6 @@ public class Main {
 
 			switch (choice) {
 
-			// SHOW AVAILABLE SEATS
-
 			case 1:
 
 				System.out.println("\n----------- SEAT LAYOUT -----------");
@@ -61,11 +59,9 @@ public class Main {
 				}
 
 				System.out.println("\n X = Booked");
-				System.out.println("[Number] = Available");
+				System.out.println("Number = Available");
 
 				break;
-
-			// BOOK TICKET
 
 			case 2:
 
@@ -77,7 +73,6 @@ public class Main {
 				System.out.print("Enter row number (1-5): ");
 				int row = sc.nextInt();
 
-				// Check row
 				if (row < 1 || row > 5) {
 
 					System.out.println("Invalid row number.");
@@ -88,7 +83,6 @@ public class Main {
 				System.out.print("How many seats do you want to book? ");
 				int numberOfSeats = sc.nextInt();
 
-				// Check number of seats
 				if (numberOfSeats < 1 || numberOfSeats > 5) {
 
 					System.out.println("You can book between 1 and 5 seats.");
@@ -100,8 +94,6 @@ public class Main {
 
 				boolean validBooking = true;
 
-				// Select seats
-
 				for (int i = 0; i < numberOfSeats; i++) {
 
 					System.out.print("Enter seat " + (i + 1) + " (1-5): ");
@@ -110,7 +102,6 @@ public class Main {
 
 					selectedSeats[i] = seatNumber;
 
-					// Check seat number
 					if (seatNumber < 1 || seatNumber > 5) {
 
 						System.out.println("Invalid seat number.");
@@ -120,7 +111,6 @@ public class Main {
 						break;
 					}
 
-					// Check already booked
 					if (seats[row - 1][seatNumber - 1]) {
 
 						System.out.println("Seat " + seatNumber + " is already booked.");
@@ -149,15 +139,12 @@ public class Main {
 					}
 				}
 
-				// If any problem occurred
 				if (!validBooking) {
 
 					System.out.println("Booking cancelled.");
 
 					break;
 				}
-
-				// WEEKEND PRICING
 
 				double pricePerSeat = movie.getTicketPrice();
 
@@ -170,11 +157,7 @@ public class Main {
 					System.out.println("\nWeekend pricing applied.");
 				}
 
-				// TOTAL PRICE
-
 				double totalPrice = pricePerSeat * numberOfSeats;
-
-				// DISCOUNT COUPON
 
 				sc.nextLine();
 
@@ -197,8 +180,6 @@ public class Main {
 
 				double finalAmount = totalPrice - discount;
 
-				// BOOK ALL SELECTED SEATS
-
 				for (int i = 0; i < numberOfSeats; i++) {
 
 					int seatNumber = selectedSeats[i];
@@ -206,12 +187,9 @@ public class Main {
 					seats[row - 1][seatNumber - 1] = true;
 				}
 
-				// Store booking
 				bookings[bookingCount] = new Booking(customerName, row, selectedSeats, finalAmount);
 
 				bookingCount++;
-
-				// DISPLAY BOOKING DETAILS
 
 				System.out.println("\n================================");
 				System.out.println("       BOOKING SUCCESSFUL");
@@ -238,8 +216,6 @@ public class Main {
 
 				break;
 
-			// 3. CANCEL TICKET
-
 			case 3:
 
 				System.out.print("\nEnter row number: ");
@@ -248,7 +224,6 @@ public class Main {
 				System.out.print("Enter seat number: ");
 				int cancelSeat = sc.nextInt();
 
-				// Check valid row and seat
 				if (cancelRow < 1 || cancelRow > 5 || cancelSeat < 1 || cancelSeat > 5) {
 
 					System.out.println("Invalid row or seat.");
@@ -256,7 +231,6 @@ public class Main {
 					break;
 				}
 
-				// Check whether seat is booked
 				if (!seats[cancelRow - 1][cancelSeat - 1]) {
 
 					System.out.println("This seat is not booked.");
@@ -264,10 +238,8 @@ public class Main {
 					break;
 				}
 
-				// Make seat available
 				seats[cancelRow - 1][cancelSeat - 1] = false;
 
-				// Find booking
 				for (int i = 0; i < bookingCount; i++) {
 
 					if (bookings[i] != null && bookings[i].getRow() == cancelRow) {

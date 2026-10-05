@@ -4,10 +4,8 @@ import java.util.*;
 
 public class ExpenseManager {
 
-	// ArrayList to store all expenses
 	private ArrayList<Expense> expenses = new ArrayList<>();
 
-	// Add expense
 	public void addExpense(Expense expense) {
 
 		expenses.add(expense);
@@ -15,7 +13,6 @@ public class ExpenseManager {
 		System.out.println("Expense added successfully.");
 	}
 
-	// Delete expense
 	public void deleteExpense(int id) {
 
 		boolean removed = expenses.removeIf(expense -> expense.getId() == id);
@@ -27,7 +24,6 @@ public class ExpenseManager {
 		}
 	}
 
-	// Display all expenses
 	public void displayExpenses() {
 
 		if (expenses.isEmpty()) {
@@ -49,7 +45,6 @@ public class ExpenseManager {
 		}
 	}
 
-	// Calculate total expense using Streams
 	public void calculateTotal() {
 
 		double total = expenses.stream().mapToDouble(Expense::getAmount).sum();
@@ -57,7 +52,6 @@ public class ExpenseManager {
 		System.out.println("Total Expense: ₹" + total);
 	}
 
-	// Find highest expense using Streams
 	public void findHighestExpense() {
 
 		if (expenses.isEmpty()) {
@@ -78,7 +72,6 @@ public class ExpenseManager {
 		System.out.println("Date        : " + highest.getDate());
 	}
 
-	// Category-wise expense using HashMap
 	public void categoryWiseExpense() {
 
 		HashMap<Category, Double> categoryMap = new HashMap<>();
