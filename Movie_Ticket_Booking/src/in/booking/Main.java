@@ -10,7 +10,7 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 
-		Movie movie = new Movie("Leo", 200, 8.5);
+		Movie movie = new Movie("Jailer-2", 200, 8.5);
 
 		boolean[][] seats = new boolean[5][5];
 
